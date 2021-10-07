@@ -1,0 +1,77 @@
+# The name is not really needed
+name = "4-area"
+
+[files]
+file_dir = "." # Location of the input files
+bus = "4area_network_bus.csv"
+gen = "4area_network_gen.csv"
+branch = "4area_network_branch.csv"
+areas = "4area_network_areas.csv"
+gencost = "4area_network_gencost.csv"
+gendata = "4area_network_gendata.csv"
+loaddata = "4area_network_loaddata.csv"
+opstates = "4area_network_opstates.csv"
+outagedata = "4area_network_outagedata.csv"
+
+[MATPOWER_options]
+baseMVA = 100
+
+[contanalysis_settings]
+pfalg = 1 # 1: AC power flow, 2: DC power flow
+cont_verbose = 5
+# cont_verbose:
+# 0 – errors and warnings
+# 1 – critical messages
+# 2 – info about loss of load
+# 3 – info about loss of load and exceeded limits
+# 4 – all messages
+ignore = [0, 0, 0, 0] # [Branch flow, P_gen, Q,_gen Voltage]
+# contres_file = ""
+# matfile = ""
+# mpcFile = ""
+# customer_database = ""
+
+[ol_settings]
+# Settings for how to create outage/contingency list
+redol = 0
+#0 – Run contingency analysis for a contingency list generated based on all components included in the network data.
+#1 – Contingency analysis is carried out for a "reduced" contingency (or outage) list that is generated only considering the components listed in the "outagedata" spreadsheet.
+commonmode = false
+branch_outage_order = 2
+generator_outage_order = 0
+branchbus_outage_order = 0
+branchgen_outage_order = 0
+genbus_outage_order = 0
+branchbusgen_outage_order = 0
+bus_outage_order = 0
+
+[corrective_actions_settings]
+iterate = 10
+reschedule_gen = 0
+load_shedding = 0
+allow_islanding = 1
+distr_slack = 1
+bfk = 0
+trip_next = 0
+init_opf = 1
+opf = 1
+all_pot_swing_bus = 1
+collapse_infeasible = 1
+distr_by_max_cap = 1
+partial_shedding = 0
+shed_closest = 0
+shedding_also_gen = 0
+reschedule_gen_opf = 0
+
+[reliabilitycalc_settings]
+customer_database = "custdata" # specifies that the default database should be used
+component_database = "compdata" # specifies that the default database should be used
+contres_file = "4area_network_contres.csv"
+redol = false
+const_outage_data = true
+const_interruption_costs = true
+ref_state_from_database = false
+refstate = 1
+protection_and_control = false
+resultsfile = "4area_network_reliabres.csv"
+commonmode = false
